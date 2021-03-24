@@ -1,0 +1,75 @@
+.BreadTop {
+  width: 80%;
+  height: 20%;
+  background: linear-gradient(#ba5111, #e27b35);
+  margin: 2% auto;
+  border-radius: 50% 50% 0 0;
+  position: relative;
+}
+.Seed {
+  position: absolute;
+  width: 8%;
+  height: 15%;
+  background: #fff;
+  top: 20%;
+  left: 40%;
+  border-radius: 50%;
+  transform: rotate(20deg);
+  box-shadow: inset -2px -3px #c9c9c9;
+}
+.Second {
+  top: 40%;
+  left: 75%;
+  transform: rotate(-20deg);
+}
+.Third {
+  top: 40%;
+  left: 10%;
+  transform: rotate(-20deg);
+}
+.Fourth {
+  top: 60%;
+  left: 55%;
+  transform: rotate(10deg);
+}
+.Fifth {
+  top: 60%;
+  left: 30%;
+  transform: rotate(-20deg);
+}
+.Meat {
+  width: 80%;
+  height: 8%;
+  background: linear-gradient(#7f3608, #702e05);
+  margin: 2% auto;
+  border-radius: 15px;
+}
+.Cheese {
+  width: 91%;
+  height: 4%;
+  background: linear-gradient(#f4d004, #d6bb22);
+  margin: 2% auto;
+  border-radius: 20px;
+}
+.Bacon {
+  width: 80%;
+  height: 3%;
+  background: linear-gradient(#bf3813, #c45e38);
+  margin: 2% auto;
+  border-radius: 5px;
+}
+.Salad {
+  width: 90%;
+  height: 7%;
+  background: linear-gradient(#228c1d, #91ce50);
+  margin: 2% auto;
+  border-radius: 20px;
+}
+.BreadBottom {
+  width: 80%;
+  height: 10%;
+  background: linear-gradient(#e27b35, #ba5111);
+  margin: 2% auto;
+  border-radius: 0 0 20px 20px;
+  margin: auto;
+}

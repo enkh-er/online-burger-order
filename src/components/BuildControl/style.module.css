@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 0;
 }
 
 .BuildControl button {
@@ -41,7 +42,7 @@
 }
 
 .BuildControl .More {
-  background-color: #8f5e1e;
+  background-color: orange;
   color: white;
 }
 

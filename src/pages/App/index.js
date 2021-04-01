@@ -1,6 +1,6 @@
 import React from "react";
 import Toolbar from "../../components/Toolbar";
-import BurgerBuilder from "../BurgerBuilder";
+import BurgerPage from "../BurgerPage";
 import css from "./style.module.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <Toolbar />
       <main className={css.Content}>
-        <BurgerBuilder />
+        <BurgerPage />
       </main>
     </div>
   );

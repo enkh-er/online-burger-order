@@ -1,0 +1,20 @@
+.SideBar {
+  width: 280px;
+  position: fixed;
+  background-color: white;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 200;
+  padding: 30px 20px;
+}
+
+@media (min-width: 500px) {
+  .SideBar {
+    display: none;
+  }
+}
+
+.Logo {
+  height: 20%;
+}

@@ -4,6 +4,8 @@ import Burger from "../../components/Burger";
 import BuildControls from "../../components/BuildControls";
 import Modal from "../../components/General/Modal";
 import OrderSummary from "../../components/OrderSummary";
+import axios from "../../axios-orders";
+import Spinner from "../../components/General/Spinner";
 
 const INGREDIENTS_PRICE = { salad: 700, cheese: 300, bacon: 1000, meat: 800 };
 const INGREDIENTS_NAMES = {
@@ -23,6 +25,25 @@ export default class BurgerBuilder extends Component {
     totalPrice: 2500,
     purchasing: false,
     confirmOrder: false,
+    loading: false,
+  };
+
+  componentDidMount = () => {
+    this.setState({ loading: true });
+    axios
+      .get("/orders.json")
+      .then((res) => {
+        const arr = Object.entries(res.data);
+        arr.forEach((element) => {
+          console.log(element[1].hayag.name + " " + element[1].dun);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        this.setState({ loading: false });
+      });
   };
 
   showComfirmModal = () => {
@@ -38,7 +59,27 @@ export default class BurgerBuilder extends Component {
   };
 
   continueOrder = () => {
-    console.log("continue daragdlaa....");
+    const order = {
+      orts: this.state.ingredients,
+      dun: this.state.totalPrice,
+      hayag: {
+        name: "saraa",
+        city: "ub",
+        street: "10-r horoolol",
+      },
+    };
+    this.setState({ loading: true });
+    axios
+      .post("/orders.json", order)
+      .then((res) => {
+        // alert("amjilttai hadgallaa");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        this.setState({ loading: false });
+      });
   };
 
   ortsNemeh = (type) => {
@@ -76,13 +117,17 @@ export default class BurgerBuilder extends Component {
           show={this.state.confirmOrder}
           closeComfirmModal={this.closeComfirmModal}
         >
-          <OrderSummary
-            onCancel={this.closeComfirmModal}
-            onContinue={this.continueOrder}
-            price={this.state.totalPrice}
-            ingredientsNames={INGREDIENTS_NAMES}
-            ingredients={this.state.ingredients}
-          />
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            <OrderSummary
+              onCancel={this.closeComfirmModal}
+              onContinue={this.continueOrder}
+              price={this.state.totalPrice}
+              ingredientsNames={INGREDIENTS_NAMES}
+              ingredients={this.state.ingredients}
+            />
+          )}
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

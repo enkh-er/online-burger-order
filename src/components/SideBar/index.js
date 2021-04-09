@@ -5,10 +5,16 @@ import Menu from "../Menu";
 import css from "./style.module.css";
 
 const SideBar = (props) => {
+  let classes = [css.SideBar, css.Close];
+
+  if (props.showSideBar) {
+    classes = [css.SideBar, css.Open];
+  }
+
   return (
     <div>
-      <Shadow show />
-      <div className={css.SideBar}>
+      <Shadow show={props.showSideBar} onClicked={props.toggleSideBar} />
+      <div onClick={props.toggleSideBar} className={classes.join(" ")}>
         <div className={css.Logo}>
           <Logo />
         </div>

@@ -25,26 +25,9 @@ export default class BurgerBuilder extends Component {
     totalPrice: 2500,
     purchasing: false,
     confirmOrder: false,
-    loading: false,
   };
 
-  componentDidMount = () => {
-    this.setState({ loading: true });
-    axios
-      .get("/orders.json")
-      .then((res) => {
-        const arr = Object.entries(res.data);
-        arr.forEach((element) => {
-          console.log(element[1].hayag.name + " " + element[1].dun);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        this.setState({ loading: false });
-      });
-  };
+  componentDidMount = () => {};
 
   showComfirmModal = () => {
     this.setState({
@@ -59,27 +42,36 @@ export default class BurgerBuilder extends Component {
   };
 
   continueOrder = () => {
-    const order = {
-      orts: this.state.ingredients,
-      dun: this.state.totalPrice,
-      hayag: {
-        name: "saraa",
-        city: "ub",
-        street: "10-r horoolol",
-      },
-    };
-    this.setState({ loading: true });
-    axios
-      .post("/orders.json", order)
-      .then((res) => {
-        // alert("amjilttai hadgallaa");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        this.setState({ loading: false });
-      });
+    // const order = {
+    //   orts: this.state.ingredients,
+    //   dun: this.state.totalPrice,
+    //   hayag: {
+    //     name: "saraa",
+    //     city: "ub",
+    //     street: "10-r horoolol",
+    //   },
+    // };
+    // this.setState({ loading: true });
+    // axios
+    //   .post("/orders.json", order)
+    //   .then((res) => {
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .finally(() => {
+    //     this.setState({ loading: false });
+    //   });
+    const params = [];
+    for (let orts in this.state.ingredients) {
+      params.push(orts + "=" + this.state.ingredients[orts]);
+    }
+    const query = params.join("&");
+    this.props.history.push({
+      pathname: "/ship",
+      search: query,
+    });
+    this.closeComfirmModal();
   };
 
   ortsNemeh = (type) => {
@@ -117,17 +109,13 @@ export default class BurgerBuilder extends Component {
           show={this.state.confirmOrder}
           closeComfirmModal={this.closeComfirmModal}
         >
-          {this.state.loading ? (
-            <Spinner />
-          ) : (
-            <OrderSummary
-              onCancel={this.closeComfirmModal}
-              onContinue={this.continueOrder}
-              price={this.state.totalPrice}
-              ingredientsNames={INGREDIENTS_NAMES}
-              ingredients={this.state.ingredients}
-            />
-          )}
+          <OrderSummary
+            onCancel={this.closeComfirmModal}
+            onContinue={this.continueOrder}
+            price={this.state.totalPrice}
+            ingredientsNames={INGREDIENTS_NAMES}
+            ingredients={this.state.ingredients}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

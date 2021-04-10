@@ -39,6 +39,7 @@
   .MenuItem a:active,
   .MenuItem a.active {
     color: white;
+    background-color: #fd8787;
     border-bottom: 2px solid white;
   }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import css from "./style.module.css";
 import axios from "../../axios-orders";
 import Spinner from "../../components/General/Spinner";
 import Order from "../../components/Order";

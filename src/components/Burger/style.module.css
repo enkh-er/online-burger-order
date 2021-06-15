@@ -8,28 +8,9 @@
   color: coral;
 }
 
-@media (min-width: 500px) and (min-height: 400px) {
+@media (min-width: 800px) and (min-height: 400px) {
   .Burger {
-    width: 70%;
-    height: 60vh;
-  }
-}
-
-@media (min-width: 600px) {
-  .Burger {
-    width: 60%;
-    height: 60vh;
-  }
-}
-@media (min-width: 800px) {
-  .Burger {
-    width: 50%;
-    height: 60vh;
-  }
-}
-@media (min-width: 1024px) {
-  .Burger {
-    width: 35%;
-    height: 60vh;
+    width: 700px;
+    height: 500px;
   }
 }
